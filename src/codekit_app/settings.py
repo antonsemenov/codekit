@@ -1,5 +1,6 @@
 # Django settings for codekit_app project.
 
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -146,6 +147,8 @@ LOGGING = {
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
+import os
+
 DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
