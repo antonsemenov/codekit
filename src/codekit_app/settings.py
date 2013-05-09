@@ -3,6 +3,7 @@ PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 # Django settings for codekit_app project.
 
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
