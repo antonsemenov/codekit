@@ -4,3 +4,4 @@ gevent==0.13.4
 greenlet==0.3.4
 psycopg2
 dj-database-url
+django-bootstrap-toolkit
