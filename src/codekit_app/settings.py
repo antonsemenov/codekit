@@ -13,10 +13,14 @@ MANAGERS = ADMINS
 
 DATABASES = {
   'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2'
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'ddp8orm32a8g59',
+    'HOST': 'ec2-54-235-155-182.compute-1.amazonaws.com',
+    'PORT': 5432,
+    'USER': 'iwlzcoclareaht',
+    'PASSWORD': 'uuPfn8A2MNM_p_mqQNMAHP_PG6'
   }
 }
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -140,10 +144,11 @@ LOGGING = {
         },
     }
 }
-
 # Parse database configuration from $DATABASE_URL
+
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(os.environ.get('DATABASE_URL'))
+
+DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
