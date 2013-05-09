@@ -1,3 +1,5 @@
+import os
+
 # Django settings for codekit_app project.
 
 DEBUG = True
@@ -11,12 +13,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
   'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'ddp8orm32a8g59',
-    'HOST': 'ec2-54-235-155-182.compute-1.amazonaws.com',
-    'PORT': 5432,
-    'USER': 'iwlzcoclareaht',
-    'PASSWORD': 'uuPfn8A2MNM_p_mqQNMAHP_PG6'
+    'ENGINE': 'django.db.backends.postgresql_psycopg2'
   }
 }
 
@@ -146,7 +143,7 @@ LOGGING = {
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] =  dj_database_url.config(os.environ.get('DATABASE_URL'))
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
