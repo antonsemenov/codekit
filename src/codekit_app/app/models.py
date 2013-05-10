@@ -1,11 +1,5 @@
 from django.db import models
 
-class Check(models.Model):
-    input_value = models.CharField(max_length=40)
-    output_value = models.CharField(max_length=40)
-    task = models.ForeignKey(Task)
-
-
 class Task(models.Model):
     name = models.CharField(max_length=20)
     desription = models.CharField(max_length=200)
@@ -16,3 +10,10 @@ class Task(models.Model):
 class Block(models.Model):
     code = models.CharField(max_length=80)
     task = models.ManyToManyField(Task)
+
+
+
+class Check(models.Model):
+    input_value = models.CharField(max_length=40)
+    output_value = models.CharField(max_length=40)
+    task = models.ForeignKey(Task)
