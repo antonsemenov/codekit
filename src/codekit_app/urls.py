@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'codekit_app.views.home', name='home'),
     # url(r'^codekit_app/', include('codekit_app.foo.urls')),
-    url(r'^task/(\w)/(\d)/$', views.task_view),
+    url(r'^task/(\w+)/(\d+)/$', views.task_view),
     # url(r'^codekit_app/', include('codekit_app.foo.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
