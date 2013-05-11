@@ -9,5 +9,5 @@ def task_view(request, lang, task_id):
     except ValueError:
         raise Http404()
 
-    Task = Task.objects.filter(lang=lang, id=task_id)
-    return render_to_response('task.html', {'html_block': Task})
+    cur_task = Task.objects.filter(lang=lang, id=task_id)
+    return render_to_response('task.html', {'html_block': cur_task})
