@@ -5,12 +5,17 @@ class Task(models.Model):
     desription = models.CharField(max_length=200)
     level = models.IntegerField(default=0)
     lang = models.CharField(max_length=20)
+	
+def __unicode__(self):
+	return '%s' % (self.name)
 
 
 class Block(models.Model):
     code = models.CharField(max_length=80)
     task = models.ManyToManyField(Task)
 
+def __unicode__(self):
+    return self.code
 
 
 class Check(models.Model):
