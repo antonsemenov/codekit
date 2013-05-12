@@ -1,4 +1,5 @@
 # Create your views here.
+from django.db.models import Avg
 from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
 from app.models import Task
@@ -8,6 +9,6 @@ def task_view(request, lang, task_id):
         task_id = int(task_id)
     except ValueError:
         raise Http404()
-
-    cur_task = Task.objects.filter(lang=lang, id=task_id)
-    return render_to_response('task.html', {'html_block': cur_task})
+	cur_task = Task.objects.get(id=task_id)
+	description = cur_task.aggregate(Avg('description'))
+    return render_to_response('task.html', {'html_block': description})
