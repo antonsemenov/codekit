@@ -23,7 +23,6 @@ def task_view(request, *args, **kwargs):
 
 def task_view_get(request, *args, **kwargs):
     assert request.method == 'GET'
-    try:
     except ValueError:
         raise Http404()
     try:
