@@ -33,7 +33,8 @@ def task_view(request, *args, **kwargs):
 		if request.is_ajax():
 			return render_to_response("task.html", json.dumps({'message' : 'awesome'},
 				ensure_ascii=False), mimetype='application/javascript')
-	raise Http404   
+	else:
+		raise Http404   
 
 
 
