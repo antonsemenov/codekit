@@ -35,7 +35,7 @@ def task_view_get(request, *args, **kwargs):
 
 
 def task_view_post(request, *args, **kwargs):
-	some_code = request
+	some_code = request.POST
 	return HttpResponse(json.dumps(some_code, ensure_ascii=False), mimetype='application/javascript')
 
     

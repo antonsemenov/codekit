@@ -1,16 +1,46 @@
+<script type="text/javascript">
+        $('html').ajaxSend(function(event, xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+
+        });
+</script>
+
+
+
 $(document).ready(function() {
-    $('#click_me').bind('click', function () {
-$.ajax({
-     type:'POST',
-     url:'/task/python/1/',
-     dataType: 'json',
-     csrfmiddlewaretoken: '{{ csrf_token }}',
-     data: {name: 'name'},
-     success: function(json){
-         alert(json.message);
-     }
-});
-   });
+    $('#click_me').submit(function (event) {
+	event.preventDefault();
+	$.ajax({
+	
+		type:'POST',
+		url:'/task/python/1/',
+		dataType: 'json',
+		csrfmiddlewaretoken: '{{ csrf_token }}',
+		data: 'hello2',
+		success: function(json){
+			alert(json.message);
+		}
+	});
+	return false;
+	});
 });
 
 
