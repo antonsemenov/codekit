@@ -1,12 +1,15 @@
 # Create your views here.
-from django.views.decorators.csrf import csrf_exempt
+
 
 from django.views.generic import list_detail
 from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
 from app.models import Task, Block
-from django.utils import simplejson
-import socket
+try:
+    import json
+except ImportError:
+    import simplejson
+
 
 def task_view(request, *args, **kwargs):
     get_view = kwargs.pop('GET', None)
@@ -37,5 +40,11 @@ def task_view_get(request, *args, **kwargs):
         extra_context = {"task" : task}
 	)    
 
+
+def task_view_post(request):
+	assert request.method == 'POST'
+    if request.is_ajax():
+        return HttpResponse(json.dumps({'message' : 'awesome'},
+            ensure_ascii=False), mimetype='application/javascript')
 
     
