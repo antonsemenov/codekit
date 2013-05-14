@@ -17,7 +17,7 @@ def task_view(request, *args, **kwargs):
     if request.method == 'GET' and get_view is not None:
         return get_view(request, *args, **kwargs)
     elif request.method == 'POST' and post_view is not None:
-        return post_view(request, *args, **kwargs)
+        return post_view(request)
     raise Http404
 
 
@@ -41,7 +41,7 @@ def task_view_get(request, *args, **kwargs):
 	)    
 
 @csrf_exempt
-def task_view_post(request):
+def task_view_post(request, *args, **kwargs):
     if request.is_ajax():
         return HttpResponse(json.dumps({'message' : 'awesome'},
             ensure_ascii=False), mimetype='application/javascript')
