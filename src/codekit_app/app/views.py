@@ -27,8 +27,7 @@ def task_view(request, *args, **kwargs):
 			request,
 			queryset = Block.objects.all(),
 			template_name = "task.html",
-			extra_context = {"task" : task}
-		) 
+			extra_context = {"task" : task}) 
 	elif request.method == 'POST':
 		if request.is_ajax():
 			return render_to_response("task.html", json.dumps({'message' : 'awesome'},
