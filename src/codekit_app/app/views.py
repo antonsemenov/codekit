@@ -23,8 +23,6 @@ def task_view(request, *args, **kwargs):
 
 def task_view_get(request, *args, **kwargs):
     assert request.method == 'GET'
-    except ValueError:
-        raise Http404()
     try:
         task= Task.objects.get(id = 1)
     except Task.DoesNotExist:
