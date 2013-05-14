@@ -10,32 +10,45 @@ try:
 except ImportError:
     import simplejson
 
-@csrf_exempt
+
 def task_view(request, *args, **kwargs):
-    if request.method == 'GET':
-		try:
-			lang = str(args[0])
-			task_id = int(args[1])
-		except ValueError:
-			raise Http404()
-		try:
-			task= Task.objects.get(id = task_id)
-		except Task.DoesNotExist:
-			raise Http404
+    get_view = kwargs.pop('GET', None)
+    post_view = kwargs.pop('POST', None)
+    if request.method == 'GET' and get_view is not None:
+        return get_view(request, *args, **kwargs)
+    elif request.method == 'POST' and post_view is not None:
+        return post_view(request, *args, **kwargs)
+    raise Http404
+
+
+def task_view_get(request, *args, **kwargs):
+    assert request.method == 'GET'
+    try:
+        lang = str(args[0])
+        task_id = int(args[1])
+    except ValueError:
+        raise Http404()
+    try:
+        task= Task.objects.get(id = task_id)
+    except Task.DoesNotExist:
+        raise Http404
 	
-		return list_detail.object_list(
-			request,
-			queryset = Block.objects.all(),
-			template_name = "task.html",
-			extra_context = {"task" : task}) 
-	elif request.method == 'POST':
-		if request.is_ajax():
-			return render_to_response("task.html", json.dumps({'message' : 'awesome'},
-				ensure_ascii=False), mimetype='application/javascript')
-	else:
-		raise Http404   
+    return list_detail.object_list(
+        request,
+        queryset = Block.objects.all(),
+        template_name = "task.html",
+        extra_context = {"task" : task}
+	)    
+
+@csrf_exempt
+def task_view_post(request, *args, **kwargs):
+    if request.is_ajax():
+        return HttpResponse(json.dumps({'message' : 'awesome'},
+            ensure_ascii=False), mimetype='application/javascript')
 
 
 
-           
+#    assert request.method == 'POST'
+#	json = simplejson.dumps('Hello')
+#	return HttpResponse(json, mimetype='application/json')
     
