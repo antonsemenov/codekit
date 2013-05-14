@@ -42,13 +42,14 @@ def task_view_get(request, *args, **kwargs):
 
 @csrf_exempt
 def task_view_post(request, *args, **kwargs):
+	assert request.method == 'POST'
     if request.is_ajax():
         return HttpResponse(json.dumps({'message' : 'awesome'},
             ensure_ascii=False), mimetype='application/javascript')
 
 
 
-#    assert request.method == 'POST'
+#    
 #	json = simplejson.dumps('Hello')
 #	return HttpResponse(json, mimetype='application/json')
     
