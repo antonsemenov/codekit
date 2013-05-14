@@ -42,7 +42,6 @@ def task_view_get(request, *args, **kwargs):
 
 
 def task_view_post(request):
-	assert request.method == 'POST'
     if request.is_ajax():
         return HttpResponse(json.dumps({'message' : 'awesome'},
             ensure_ascii=False), mimetype='application/javascript')
