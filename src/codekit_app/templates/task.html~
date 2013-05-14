@@ -1,0 +1,55 @@
+{% extends "codekit_app/base.html" %}
+{% block content %}
+      <div class="well">
+        <div class="row-fluid">
+          <div class="span8">
+            <div class="well">
+              <h1>Main area
+                <br> 
+              </h1>
+              <p>The code will be here.
+                <br> 
+              </p>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="row-fluid">
+              <div class="span12">
+                <div class="well">
+                  <h1>Code Field
+                    <br> 
+                  </h1>
+                </div>
+              </div>
+              <div class="span12">
+                <div class="well">
+                  <h1>Code description Field
+                    <br> 
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="well">
+        <div class="row-fluid">
+          <div class="span8">
+            <div class="well">
+              <h1>Task description
+                <br> 
+              </h1>
+              <p>Yes, it's task description
+                <br> 
+              </p>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="well">
+              <a class="btn btn-large btn-block" href="#"><span class="btn-label">Done!</span></a> 
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
