@@ -1,6 +1,4 @@
 # Create your views here.
-
-
 from django.views.generic import list_detail
 from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
@@ -17,7 +15,7 @@ def task_view(request, *args, **kwargs):
     if request.method == 'GET' and get_view is not None:
         return get_view(request, *args, **kwargs)
     elif request.method == 'POST' and post_view is not None:
-        return post_view(request)
+        return post_view(request, *args, **kwargs)
     raise Http404
 
 
@@ -36,7 +34,8 @@ def task_view_get(request, *args, **kwargs):
 	)    
 
 
-def task_view_post(request):
-	return HttpResponse(json.dumps({'message' : 'awesome'}, ensure_ascii=False), mimetype='application/javascript')
+def task_view_post(request, *args, **kwargs):
+	some_code = request
+	return HttpResponse(json.dumps(some_code, ensure_ascii=False), mimetype='application/javascript')
 
     

@@ -5,6 +5,7 @@ $.ajax({
      url:'/task/python/1/',
      dataType: 'json',
      csrfmiddlewaretoken: '{{ csrf_token }}',
+     data: {name: 'name'},
      success: function(json){
          alert(json.message);
      }
