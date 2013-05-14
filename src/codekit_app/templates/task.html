@@ -8,7 +8,7 @@
 #sortable1 li, #sortable2 li { margin: 10px; padding: 10px; font-size: 1.2em; display: table; vertical-align:left;}
 </style>
 <script type="text/javascript" src="/static/script.js"%}></script> 
-
+<script type="text/javascript" src="/static/CSRF_cookie.js"%}></script> 
 
 
 {% endblock %}
@@ -43,8 +43,9 @@
 				</div>
           
           </div>
-          <button type="submit" class="btn btn-large btn-block" id="click_me">Submit</button>
- 
+          <form action="." method="post">{% csrf_token %} 
+			 <button type="submit" class="btn btn-large btn-block "id="click_me">Submit</button> 
+		  <form>
         </div>
   
 
