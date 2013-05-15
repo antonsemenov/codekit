@@ -8,7 +8,7 @@ $(document).ready(function() {
 		csrfmiddlewaretoken: '{{ csrf_token }}',
 		data: {lang: "python", code: getCode()},
 		success: function(json){
-			alert(json['ha-ha']);
+			alert(json['pi']);
 		}
 		
 	});

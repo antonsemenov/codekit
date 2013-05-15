@@ -37,7 +37,7 @@ def task_view_get(request, *args, **kwargs):
 
 
 def task_view_post(request, *args, **kwargs):
-	assert request.method == 'GET'
+	assert request.method == 'POST'
 #	solution = request.POST.get("solution", False)
 	i = Ideone('antonsemenov', 'abc123123')
 	solution = i.test()
