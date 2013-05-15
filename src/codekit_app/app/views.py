@@ -41,6 +41,6 @@ def task_view_post(request, *args, **kwargs):
 #	solution = request.POST.get("solution", False)
 	i = Ideone('antonsemenov', 'abc123123')
 	solution = i.test()
-	return HttpResponse(simplejson.dumps('ha-ha', ensure_ascii=False), mimetype='application/javascript')
+	return HttpResponse(simplejson.dumps(solution, ensure_ascii=False), mimetype='application/javascript')
 
     
