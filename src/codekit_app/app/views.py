@@ -1,12 +1,14 @@
 # Create your views here.
+from ideone import Ideone
+
+from django.utils import simplejson
 from django.views.generic import list_detail
 from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
 from app.models import Task, Block
-try:
-    import json
-except ImportError:
-    import simplejson
+
+
+
 
 
 def task_view(request, *args, **kwargs):
@@ -35,7 +37,10 @@ def task_view_get(request, *args, **kwargs):
 
 
 def task_view_post(request, *args, **kwargs):
-	some_code = request.POST
-	return HttpResponse(json.dumps(some_code, ensure_ascii=False), mimetype='application/javascript')
+	assert request.method == 'GET'
+#	solution = request.POST.get("solution", False)
+	i = Ideone('antonsemenov', 'abc123123')
+	solution = i.test()
+	return HttpResponse(simplejson.dumps('ha-ha', ensure_ascii=False), mimetype='application/javascript')
 
     

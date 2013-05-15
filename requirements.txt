@@ -6,3 +6,4 @@ psycopg2
 dj-database-url
 django-bootstrap-toolkit
 South
+ideone

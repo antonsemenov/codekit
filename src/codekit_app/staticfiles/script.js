@@ -1,48 +1,30 @@
-<script type="text/javascript">
-        $('html').ajaxSend(function(event, xhr, settings) {
-            function getCookie(name) {
-                var cookieValue = null;
-                if (document.cookie && document.cookie != '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = jQuery.trim(cookies[i]);
-                        // Does this cookie string begin with the name we want?
-                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-                return cookieValue;
-            }
-            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-                // Only send the token to relative URLs i.e. locally.
-                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-            }
-
-        });
-</script>
-
-
-
 $(document).ready(function() {
     $('#click_me').submit(function (event) {
 	event.preventDefault();
 	$.ajax({
-	
 		type:'POST',
 		url:'/task/python/1/',
 		dataType: 'json',
 		csrfmiddlewaretoken: '{{ csrf_token }}',
-		data: 'hello2',
+		data: {lang: "python", code: getCode()},
 		success: function(json){
-			alert(json.message);
+			alert(json['ha-ha']);
 		}
+		
 	});
 	return false;
 	});
 });
 
+
+function getCode(){
+	var code = '';
+	$('#sortable1 > li').each(function(i){
+		code += $(this).html();
+		code +='\n';
+	});
+	return code;
+}
 
 
  $(function() {
