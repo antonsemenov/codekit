@@ -3,18 +3,25 @@ $(document).ready(function() {
 	event.preventDefault();
 	$.ajax({
 		type:'POST',
-		url:'/task/python/1/',
+		url:'/task/1/',
 		dataType: 'json',
 		csrfmiddlewaretoken: '{{ csrf_token }}',
-		data: {lang: "python", code: getCode()},
-		success: function(json){
-			alert(json['pi']);
-		}
+		data: {code: getCode()},
+		success: function(json){ resultViewer(json);}
 		
 	});
 	return false;
 	});
 });
+
+function resultViewer(json){
+	if (json['result'] = 15){
+		alert('Congratulations, you won');
+	} else{
+		alert('Sorry, try again');
+		}
+	
+	}
 
 
 function getCode(){
