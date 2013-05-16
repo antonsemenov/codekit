@@ -4,7 +4,7 @@ class Task(models.Model):
     name = models.CharField(max_length=20)
     desription = models.CharField(max_length=200)
     level = models.IntegerField(default=0)
-    lang = models.CharField(max_length=20)
+    lang = models.ForeignKey(Task)
 	
 def __unicode__(self):
 	return '%s' % (self.name)
@@ -22,3 +22,13 @@ class Check(models.Model):
     input_value = models.CharField(max_length=40)
     output_value = models.CharField(max_length=40)
     task = models.ForeignKey(Task)
+    
+def __unicode__(self):
+    return self.input_value + ' ' + self.input_value 
+
+class Language(models.Model):
+	name  = models.CharField(max_length=40)
+	accessId = models.IntegerField()
+
+def __unicode__(self):
+    return self.input_value + ' ' + self.input_value 

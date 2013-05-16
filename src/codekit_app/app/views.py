@@ -29,7 +29,7 @@ def task_view_get(request, *args, **kwargs):
         raise Http404
     return list_detail.object_list(
         request,
-        queryset = Block.objects.filter(task = taskId).order_by('?'),
+        queryset = Block.objects.filter(task = taskId),
         template_name = "task.html",
         extra_context = {"task" : task}
 	)    

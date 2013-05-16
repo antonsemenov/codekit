@@ -26,7 +26,7 @@ function resultViewer(json){
 
 function getCode(){
 	var code = '';
-	$('#sortable1 > li').each(function(i){
+	$('#sortable1 > li > pre').each(function(i){
 		code += $(this).html();
 		code +='\n';
 	});
