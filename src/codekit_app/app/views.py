@@ -20,15 +20,16 @@ def task_view(request, *args, **kwargs):
 
 def task_view_get(request, *args, **kwargs):
     assert request.method == 'GET'
-	taskLang = str(args[0])
-	taskId = int(args[1])
-	try:
-        task= Task.objects.get(id = taskId)
+    taskLang = args[0]
+    taskId = args[1]
+    try:
+        task = Task.objects.get(id = taskId)
     except Task.DoesNotExist:
         raise Http404
+    langId = Language.objects.get(name = taskLang).__dict__['id']
     return list_detail.object_list(
         request,
-        queryset = Block.objects.filter(task = taskId, lang = taskLang),
+        queryset = Block.objects.filter(task = taskId, lang = langId),
         template_name = "task.html",
         extra_context = {"task" : task}
 	)    
@@ -36,7 +37,8 @@ def task_view_get(request, *args, **kwargs):
 
 def task_view_post(request, *args, **kwargs):
 	assert request.method == 'POST'
-	taskId = int(args[0])
 	solution = request.POST.get("code")		
+	taskLang = args[0]
+    taskId = args[1]
 	inputs_outputs = Check.objects.filter(task = taskId)
-	return HttpResponse(simplejson.dumps(checkSolution(solution, inputs_outputs, langId), ensure_ascii=False), mimetype='application/javascript')
+	return HttpResponse(simplejson.dumps(checkSolution(solution, inputs_outputs, Language.objects.get(name = taskLang).__dict__['accessId']), ensure_ascii=False), mimetype='application/javascript')
