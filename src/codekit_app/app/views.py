@@ -40,4 +40,5 @@ def task_view_post(request, *args, **kwargs):
 	taskId = int(args[0])
 	solution = request.POST.get("code")		
 	inputs_outputs = Check.objects.filter(task = taskId)
-	return HttpResponse(simplejson.dumps(checkSolution(taskId, solution, inputs_outputs), ensure_ascii=False), mimetype='application/javascript')
+	langId  =  Language.objects.get(task__id__exact = taskId).
+	return HttpResponse(simplejson.dumps(checkSolution(solution, inputs_outputs, langId), ensure_ascii=False), mimetype='application/javascript')
