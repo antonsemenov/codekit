@@ -4,6 +4,7 @@ from django.views.generic import list_detail
 from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
 from app.models import Task, Block, Check, Language
+
 import random
 from app.check import * 
 
@@ -19,17 +20,15 @@ def task_view(request, *args, **kwargs):
 
 def task_view_get(request, *args, **kwargs):
     assert request.method == 'GET'
-    try:
-		taskId = int(args[0])
-    except taskId.DoesNotExist:
-        raise Http404
-    try:
+	taskLang = str(args[0])
+	taskId = int(args[1])
+	try:
         task= Task.objects.get(id = taskId)
     except Task.DoesNotExist:
         raise Http404
     return list_detail.object_list(
         request,
-        queryset = Block.objects.filter(task = taskId, ),
+        queryset = Block.objects.filter(task = taskId, lang = taskLang),
         template_name = "task.html",
         extra_context = {"task" : task}
 	)    
