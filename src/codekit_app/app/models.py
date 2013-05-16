@@ -9,7 +9,7 @@ class Task(models.Model):
     name = models.CharField(max_length=20)
     desription = models.CharField(max_length=200)
     level = models.IntegerField(default=0)
-    lang = models.ForeignKey(Language)
+    lang = models.ManyToManyField(Language)
 	
 
 class Block(models.Model):
