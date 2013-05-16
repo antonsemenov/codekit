@@ -3,9 +3,8 @@ from django.db import models
 class Language(models.Model):
 	name  = models.CharField(max_length=40)
 	accessId = models.IntegerField()
-	def __unicode__(self):  # Python 3: def __str__(self):
-        return self.name
-
+	
+	
 class Task(models.Model):
     name = models.CharField(max_length=20)
     desription = models.CharField(max_length=200)
