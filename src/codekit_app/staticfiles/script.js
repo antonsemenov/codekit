@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	
 	$.ajax({
-		url:'/task/1/',
+		url:'/task/python/1/',
 		type:'POST',
 		dataType: 'json',
 		async: false,
