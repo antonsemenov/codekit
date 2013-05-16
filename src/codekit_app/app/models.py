@@ -1,5 +1,12 @@
 from django.db import models
 
+class Language(models.Model):
+	name  = models.CharField(max_length=40)
+	accessId = models.IntegerField()
+
+def __unicode__(self):
+    return self.input_value + ' ' + self.input_value 
+
 class Task(models.Model):
     name = models.CharField(max_length=20)
     desription = models.CharField(max_length=200)
@@ -26,9 +33,4 @@ class Check(models.Model):
 def __unicode__(self):
     return self.input_value + ' ' + self.input_value 
 
-class Language(models.Model):
-	name  = models.CharField(max_length=40)
-	accessId = models.IntegerField()
 
-def __unicode__(self):
-    return self.input_value + ' ' + self.input_value 
