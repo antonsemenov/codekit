@@ -4,7 +4,7 @@ class Task(models.Model):
     name = models.CharField(max_length=20)
     desription = models.CharField(max_length=200)
     level = models.IntegerField(default=0)
-    lang = models.ForeignKey(Task)
+    lang = models.ForeignKey(Language)
 	
 def __unicode__(self):
 	return '%s' % (self.name)
@@ -12,7 +12,7 @@ def __unicode__(self):
 
 class Block(models.Model):
     code = models.CharField(max_length=80)
-    task = models.ManyToManyField(Task)
+    task =  models.ForeignKey(Task)
 
 def __unicode__(self):
     return self.code
