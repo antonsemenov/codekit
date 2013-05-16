@@ -3,7 +3,7 @@ from django.utils import simplejson
 from django.views.generic import list_detail
 from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
-from app.models import Task, Block, Check
+from app.models import Task, Block, Check, Language
 import random
 from app.check import * 
 
