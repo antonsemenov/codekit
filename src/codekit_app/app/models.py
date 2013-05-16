@@ -12,7 +12,7 @@ class Task(models.Model):
     desription = models.CharField(max_length=200)
     level = models.IntegerField(default=0)
 
-	def __unicode__(self):
+    def __unicode__(self):
         return self.name
 
 class Block(models.Model):
@@ -20,13 +20,13 @@ class Block(models.Model):
     task =  models.ForeignKey(Task)
     lang =  models.ForeignKey(Language)
 
-	def __unicode__(self):
+    def __unicode__(self):
         return self.code
 
 class Check(models.Model):
     input_value = models.CharField(max_length=40)
     output_value = models.CharField(max_length=40)
     task = models.ForeignKey(Task)
-	
-	def __unicode__(self):
+
+    def __unicode__(self):
         return '%s %s' % (self.input_value, self.out_value)
