@@ -3,8 +3,8 @@ from django.utils import simplejson
 from django.views.generic import list_detail
 from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
-from app.models import Task, Block
-
+from app.models import Task, Block, Check
+import random
 from app.check import * 
 
 def task_view(request, *args, **kwargs):
@@ -27,10 +27,9 @@ def task_view_get(request, *args, **kwargs):
         task= Task.objects.get(id = taskId)
     except Task.DoesNotExist:
         raise Http404
-	
     return list_detail.object_list(
         request,
-        queryset = Block.objects.all(),
+        queryset = Block.objects.filter(task = taskId).order_by('?'),
         template_name = "task.html",
         extra_context = {"task" : task}
 	)    
@@ -39,7 +38,6 @@ def task_view_get(request, *args, **kwargs):
 def task_view_post(request, *args, **kwargs):
 	assert request.method == 'POST'
 	taskId = int(args[0])
-	solution = request.POST.get("code")
-	return HttpResponse(simplejson.dumps(checkSolution(taskId, solution), ensure_ascii=False), mimetype='application/javascript')
-
-    
+	solution = request.POST.get("code")		
+	inputs_outputs = Check.objects.filter(task = taskId)
+	return HttpResponse(simplejson.dumps(checkSolution(taskId, solution, inputs_outputs), ensure_ascii=False), mimetype='application/javascript')

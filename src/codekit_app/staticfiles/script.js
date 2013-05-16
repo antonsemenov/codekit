@@ -1,26 +1,26 @@
 $(document).ready(function() {
     $('#click_me').submit(function (event) {
 	event.preventDefault();
+	
+	
 	$.ajax({
-		type:'POST',
 		url:'/task/1/',
+		type:'POST',
 		dataType: 'json',
+		async: false,
 		csrfmiddlewaretoken: '{{ csrf_token }}',
 		data: {code: getCode()},
-		success: function(json){ resultViewer(json);}
-		
+		success: function(json){ resultViewer(json)}
 	});
 	return false;
 	});
 });
 
+
+
 function resultViewer(json){
-	if (json['result'] = 15){
-		alert('Congratulations, you won');
-	} else{
-		alert('Sorry, try again');
-		}
-	
+	$('.well').html('<h1>'+json['result']+'</h1>');
+	$('.well').append('<br><hr><a href=".">Try again</a> <a href="../tasks">Choose the task</a>');
 	}
 
 
@@ -43,7 +43,7 @@ function getCode(){
 		drop: function( event, ui ) {
 			var $item = $( this );
 			var $list = $( $item.find( "a" ).attr( "href" ) ).find( ".connectedSortable" );
-			ui.draggable.hide( "slow", function() {
+			ui.draggable.hide( "norma", function() {
 				$tabs.tabs( "option", "active", $tab_items.index( $item ) );
 				$( this ).appendTo( $list ).show( "slow" );
 			});
