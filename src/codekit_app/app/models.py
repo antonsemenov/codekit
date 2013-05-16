@@ -1,9 +1,9 @@
 from django.db import models
+from django.db import utils
 
 class Language(models.Model):
 	name  = models.CharField(max_length=40)
-	accessId = models.IntegerField()
-	
+	accessId = models.IntegerField()	
 	def __unicode__(self):
         return self.name
 	
@@ -28,5 +28,5 @@ class Check(models.Model):
     output_value = models.CharField(max_length=40)
     task = models.ForeignKey(Task)
 	
-	ef __unicode__(self):
-        return self.input_value + ' ' + self.output_value
+	def __unicode__(self):
+        return '%s %s' % (self.input_value, self.out_value)
