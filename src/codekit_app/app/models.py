@@ -29,4 +29,4 @@ class Check(models.Model):
     task = models.ForeignKey(Task)
 
     def __unicode__(self):
-        return '%s %s' % (self.input_value, self.out_value)
+        return '%s %s' % (self.input_value, self.output_value)
