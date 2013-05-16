@@ -37,6 +37,8 @@ def task_view_get(request, *args, **kwargs):
 
 def task_view_post(request, *args, **kwargs):
 	assert request.method == 'POST'
+	k = args[1]
+	l = args[0]
 	solution = request.POST.get("code")		
-	inputs_outputs = Check.objects.filter(task = args[1])
-	return HttpResponse(simplejson.dumps(checkSolution(solution, inputs_outputs, Language.objects.get(name = args[0]).__dict__['accessId']), ensure_ascii=False), mimetype='application/javascript')
+	inputs_outputs = Check.objects.filter(task = k)
+	return HttpResponse(simplejson.dumps(checkSolution(solution, inputs_outputs, Language.objects.get(name = l).__dict__['accessId']), ensure_ascii=False), mimetype='application/javascript')
