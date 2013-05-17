@@ -18,7 +18,7 @@ class Task(models.Model):
 class Block(models.Model):
     code = models.CharField(max_length=80)
     task =  models.ForeignKey(Task)
-	lang = models.ForeignKey(Language)
+    lang = models.ForeignKey(Language)
     def __unicode__(self):
         return self.code
 
