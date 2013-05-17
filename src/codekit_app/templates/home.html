@@ -1,38 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
       <div class="well">
-        
+        <h2>Available tasks</h2>
         <div class="row-fluid">
-          <h3>{{ task.desription }}<h3>
 
-			<div class="sell">
-				<div id="tabs">
-					<ul>
-						<li><a href="#tabs-1">Clipboard</a></li>
-						<li><a href="#tabs-2">Trash</a></li>
-					</ul>
-					<div id="tabs-1">
-						<ul id="sortable1" class="connectedSortable ui-helper-reset ">
-							{% for block in object_list %}
-							
-							<li class="ui-state-default" style="margin: 0px; padding: 0px;"><pre style="margin: 0px;">{{ block.code }}</pre></li>
-							
-							{% endfor %}
-					
-						</ul>
-					</div>
+			{% for lang in langs %}
 				
-					<div id="tabs-2">
-						<ul id="sortable2" class="connectedSortable ui-helper-reset">
-							<li class="ui-state-default" style="margin: 0px; padding: 0px;"><pre style="margin: 0px;">HELLO</li>
-						</ul>
-					</div>
-				</div>
+				{% for task in object_list %}
+				 <br><h4><a href="task/{{ lang.name  }}/{{ task.id }}"> {{ task.name  }} by {{ lang.name  }}</a><h4>
+				{% empty %}
+				<h3> Sorry, tasks</h3>
+				{% endfor %}
+							
+			{% empty %}
+				<h3> Sorry, no languages</h3>
+			{% endfor %}
+					
           
           </div>
-          <form action="." method="post" id="click_me">{% csrf_token %}
-			 <button type="submit" class="btn btn-large btn-block">Submit</button> 
-		  <form>
         </div>
   
 

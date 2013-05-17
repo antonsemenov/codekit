@@ -9,7 +9,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'codekit_app.views.home'),
+    url(r'^$', views.home),
     # url(r'^codekit_app/', include('codekit_app.foo.urls')),
     url(r'^task/(\w+)/(\d+)/$', views.task_view, {'GET': views.task_view_get, 'POST': views.task_view_post}),
     #url(r'^task/python/1/', views.task_view, {'GET': views.task_view_get, 'POST': views.task_view_post}),

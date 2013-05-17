@@ -9,11 +9,13 @@ import random
 from app.check import * 
 
 def home(request):
+	
+    langs =  Language.objects.all()
     return list_detail.object_list(
         request,
         queryset = Task.objects.all(),
-        template_name = "task.html",
-        extra_context = {"task" : task}
+        template_name = "home.html",
+        extra_context = {"langs" : langs}
 	) 
 
 
@@ -32,11 +34,12 @@ def task_view_get(request, *args, **kwargs):
     assert request.method == 'GET'
     taskLang = args[0]
     taskId = args[1]
+    langId = Language.objects.get(name = taskLang).__dict__['id']
     try:
-        task = Task.objects.get(id = taskId, lang = taskLang)
+        task = Task.objects.get(id = taskId, lang = langId )
     except Task.DoesNotExist:
         raise Http404
-    langId = Language.objects.get(name = taskLang).__dict__['id']
+    
     return list_detail.object_list(
         request,
         queryset = Block.objects.filter(task = taskId, lang = langId),
@@ -47,8 +50,8 @@ def task_view_get(request, *args, **kwargs):
 
 def task_view_post(request, *args, **kwargs):
 	assert request.method == 'POST'
-	k = args[1]
-	l = args[0]
+	taskLang = args[1]
+	taskId = args[0]
 	solution = request.POST.get("code")		
 	inputs_outputs = Check.objects.filter(task = k)
 	return HttpResponse(simplejson.dumps(checkSolution(solution, inputs_outputs, Language.objects.get(name = l).__dict__['accessId']), ensure_ascii=False), mimetype='application/javascript')
