@@ -42,7 +42,7 @@ def task_view_get(request, *args, **kwargs):
     
     return list_detail.object_list(
         request,
-        queryset = Block.objects.filter(task = taskId, lang = langId),
+        queryset = Block.objects.filter(task = taskId, lang = langId).order_by('?'),
         template_name = "task.html",
         extra_context = {"task" : task}
 	)    
