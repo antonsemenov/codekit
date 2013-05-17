@@ -11,7 +11,7 @@ class Task(models.Model):
     name = models.CharField(max_length=20)
     desription = models.CharField(max_length=200)
     level = models.IntegerField(default=0)
-	lang =  models.ManyToManyField(Language)
+    lang =  models.ManyToManyField(Language)
     def __unicode__(self):
         return self.name
 
