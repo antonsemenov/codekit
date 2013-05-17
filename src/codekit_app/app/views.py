@@ -8,6 +8,16 @@ from app.models import Task, Block, Check, Language
 import random
 from app.check import * 
 
+def home(request):
+    return list_detail.object_list(
+        request,
+        queryset = Task.objects.all(),
+        template_name = "task.html",
+        extra_context = {"task" : task}
+	) 
+
+
+
 def task_view(request, *args, **kwargs):
     get_view = kwargs.pop('GET', None)
     post_view = kwargs.pop('POST', None)
@@ -23,7 +33,7 @@ def task_view_get(request, *args, **kwargs):
     taskLang = args[0]
     taskId = args[1]
     try:
-        task = Task.objects.get(id = taskId)
+        task = Task.objects.get(id = taskId, lang = taskLang)
     except Task.DoesNotExist:
         raise Http404
     langId = Language.objects.get(name = taskLang).__dict__['id']

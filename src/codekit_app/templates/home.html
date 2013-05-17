@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="well">
+        
+        <div class="row-fluid">
+          <h3>{{ task.desription }}<h3>
+
+			<div class="sell">
+				<div id="tabs">
+					<ul>
+						<li><a href="#tabs-1">Clipboard</a></li>
+						<li><a href="#tabs-2">Trash</a></li>
+					</ul>
+					<div id="tabs-1">
+						<ul id="sortable1" class="connectedSortable ui-helper-reset ">
+							{% for block in object_list %}
+							
+							<li class="ui-state-default" style="margin: 0px; padding: 0px;"><pre style="margin: 0px;">{{ block.code }}</pre></li>
+							
+							{% endfor %}
+					
+						</ul>
+					</div>
+				
+					<div id="tabs-2">
+						<ul id="sortable2" class="connectedSortable ui-helper-reset">
+							<li class="ui-state-default" style="margin: 0px; padding: 0px;"><pre style="margin: 0px;">HELLO</li>
+						</ul>
+					</div>
+				</div>
+          
+          </div>
+          <form action="." method="post" id="click_me">{% csrf_token %}
+			 <button type="submit" class="btn btn-large btn-block">Submit</button> 
+		  <form>
+        </div>
+  
+
+
+{% endblock %}

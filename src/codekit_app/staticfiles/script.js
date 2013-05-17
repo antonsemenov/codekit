@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 function resultViewer(json){
 	$('.well').html('<h1>'+json['result']+'</h1>');
-	$('.well').append('<br><hr><a href=".">Try again</a> <a href="../tasks">Choose the task</a>');
+	$('.well').append('<br><hr><a href=".">Try again</a> <a href="../../../">Choose the task</a>');
 	}
 
 
